@@ -24,38 +24,62 @@ var database = firebase.database();
 $(document).on("click", "#addTrain", function (event) {
     event.preventDefault();
     $("#warning").html("");
+
     // stores the input in variables
     trainName = $("#trainName").val().trim();
     destination = $("#destination").val().trim();
     frequency = $("#frequency").val().trim();
     firstTrain = $("#firstTrain").val().trim();
-    
-    // a little form valadation
-    if((trainName !== "") && (destination !== "") && (frequency !== "") && (firstTrain !== "")){
-    // making table rows and puting them in variables
-    var tableRow = $("<tr>");
-    var tableData1 = $("<td>");
-    tableData1.text(trainName);
-    var tableData2 = $("<td>");
-    tableData2.text(destination);
-    var tableData3 = $("<td>");
-    tableData3.text(frequency);
-    var tableData4 = $("<td>");
-    tableData4.text(firstTrain);
-    var tableData5 = $("<td>");
-    tableData5.text();
-    
-    // pushing and not setting tables in firebase
-    database.ref().push({
-        trainName: trainName,
-        trainDestination: destination,
-        trainLeaving: firstTrain,
-        trainFrequency: frequency,
 
-        // adds times stamp to entries 
-        trainAddedTimestamp: firebase.database.ServerValue.TIMESTAMP
-    });
-}   else{ $("#warning").html("<span>Must fill out all forms</span>"); }
+    // a little form valadation
+    if ((trainName !== "") && (destination !== "") && (frequency !== "") && (firstTrain !== "")) {
+        if (isNaN($("#frequency").val())) {
+            $("#warning").html("<span>Frequency must be a number</span>");
+            return false;
+        } else {
+            // making table rows and puting them in variables
+            var tableRow = $("<tr>");
+            var tableData1 = $("<td>");
+            tableData1.text(trainName);
+            var tableData2 = $("<td>");
+            tableData2.text(destination);
+            var tableData3 = $("<td>");
+            tableData3.text(frequency);
+            var tableData4 = $("<td>");
+            tableData4.text(firstTrain);
+            var tableData5 = $("<td>");
+            tableData5.text();
+
+            // pushing and not setting tables in firebase
+            database.ref().push({
+                trainName: trainName,
+                trainDestination: destination,
+                trainLeaving: firstTrain,
+                trainFrequency: frequency,
+
+                // adds times stamp to entries 
+                trainAddedTimestamp: firebase.database.ServerValue.TIMESTAMP
+            });
+            $("#trainName").val("");
+            $("#destination").val("");
+            $("#frequency").val("");
+            $("#firstTrain").val("");
+
+            // testing validation
+           
+            if (moment(firstTrain).isValid()) {
+                alert("is valid");
+                console.log(firstTrain);
+                
+            } else {
+                alert("is not valid");
+                console.log(firstTrain);
+            }
+
+        }
+    } else {
+        $("#warning").html("<span>Must fill out all forms</span>");
+    }
 
 });
 
@@ -84,8 +108,8 @@ database.ref().on("child_added", function (snapshot) {
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
- 
-    
+
+
     var tableRow = $("<tr>");
     var tableData1 = $("<td>");
     tableData1.text(sv.trainName);
@@ -103,5 +127,4 @@ database.ref().on("child_added", function (snapshot) {
 
 }, function (error) {
     console.log("Errors: " + error);
-
 });
