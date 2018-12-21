@@ -17,6 +17,8 @@
         crossorigin="anonymous"></script>
     <!-- MY SCRIPT -->
     <script src="javascript/app.js"></script>
+    <!-- MOMENT JS CDN -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <title>Train-Scheduler</title>
 </head>
 
@@ -49,22 +51,11 @@
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
+                    <td>Trenton Express</td>
+                    <td>Trenton</td>
+                    <td>25</td>
+                    <td>05:35</td>
+                    <td>10</td>
                 </tr>
             </tbody>
         </table>
@@ -81,21 +72,21 @@
         <form>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Train Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="amtrak">
+                <input type="text" class="form-control" id="trainName" placeholder="amtrak">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Destination</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Washsinton DC">
+                <input type="text" class="form-control" id="destination" placeholder="Washsinton DC">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">First Train Time (HH:mm - military time)</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="13:30">
+                <input type="text" class="form-control" id="frequency" placeholder="13:30">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Frequency (min)</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="25">
+                <input type="text" class="form-control" id="firstTrain" placeholder="25">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button id="addTrain" type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
     </div>
