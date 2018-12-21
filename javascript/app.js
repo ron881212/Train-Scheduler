@@ -62,23 +62,41 @@ $(document).on("click", "#addTrain", function (event) {
 // function to update site everytime child is added
 database.ref().on("child_added", function (snapshot) {
     var sv = snapshot.val();
-
     console.log(sv.trainName);
     console.log(sv.trainDestination);
     console.log(sv.trainLeaving);
     console.log(sv.trainFrequency);
-
+    // current time
+    var currentTime = moment().format('HH:mm');
+    console.log(currentTime);
+    // First Time (pushed back 1 year to make sure it comes before current time)
+    var firstTimeConverted = moment(sv.trainLeaving, "HH:mm").subtract(1, "years");
+    console.log(firstTimeConverted);
+    // Getting the difference between the times 
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);
+    // Getting the reminder
+    var tRemainder = diffTime % sv.trainFrequency;
+    console.log(tRemainder);
+    // Minutes Until Train
+    var tMinutesTillTrain = sv.trainFrequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+    // Next Train
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+ 
+    
     var tableRow = $("<tr>");
     var tableData1 = $("<td>");
     tableData1.text(sv.trainName);
     var tableData2 = $("<td>");
     tableData2.text(sv.trainDestination);
     var tableData3 = $("<td>");
-    tableData3.text(sv.trainLeaving);
+    tableData3.text(sv.trainFrequency);
     var tableData4 = $("<td>");
-    tableData4.text(sv.trainFrequency);
+    tableData4.text(nextTrain.format("hh:mm"));
     var tableData5 = $("<td>");
-    tableData5.text();
+    tableData5.text(tMinutesTillTrain);
 
     tableRow.append(tableData1, tableData2, tableData3, tableData4, tableData5);
     $(".table").append(tableRow);
