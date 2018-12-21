@@ -1,23 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
     <!-- BOOTSTAPS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <!-- MY STYLES -->
     <link rel="stylesheet" href="css/style.css">
     <!-- JQUERY CDN -->
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <!-- MY SCRIPT -->
     <script src="javascript/app.js"></script>
     <title>Train-Scheduler</title>
 </head>
+
 <body>
-    
+
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 text-center">Anytime is Train Time</h1>
+                <p class="lead text-center">Choo Choo. Chee Chee</p>
+            </div>
+        </div>
+       
+      
+        <div class="col-lg-12 mb-3">
+                <div class="card card-default">
+                <div class="card-header">
+                    Current Train Schedule
+                </div>
+                <div class="card-body p-0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Train Name</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Frequency (min)</th>
+                    <th scope="col">Next Arrival</th>
+                    <th scope="col">Minutes Away</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+   
+        <div class="col-lg-12 mb-3">
+                <div class="card card-default">
+                <div class="card-header">
+                    Add Train
+                </div>
+                <div class="card-body">
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Train Name</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="amtrak">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Destination</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Washsinton DC">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">First Train Time (HH:mm - military time)</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="13:30">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Frequency (min)</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="25">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    </div>
+    </div>
+   
+
+
+
 </body>
+
 </html>
