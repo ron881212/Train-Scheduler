@@ -1,0 +1,27 @@
+body {
+    background-image: url("/train.jpg");
+}
+
+.card-header,
+.jumbotron
+{
+    background-color: #f68617;
+    opacity: 0.92;
+}
+
+.card{
+    background-color: #e7d7ca;
+    border: none;
+    opacity: 0.92;
+}
+
+#trainName,
+#destination,
+#firstTrain,
+#frequency {
+    background-color: #fefbea;
+    opacity: 0.92;
+}
+#addTrain{
+    background-color: #629ab9;
+}
