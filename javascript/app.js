@@ -33,7 +33,7 @@ $(document).on("click", "#addTrain", function (event) {
 
     // a little form valadation
     if ((trainName !== "") && (destination !== "") && (frequency !== "") && (firstTrain !== "")) {
-        if (isNaN($("#frequency").val())) {
+        if(isNaN($("#frequency").val())) {
             $("#warning").html("<span>Frequency must be a number</span>");
             return false;
         } else {
@@ -64,18 +64,6 @@ $(document).on("click", "#addTrain", function (event) {
             $("#destination").val("");
             $("#frequency").val("");
             $("#firstTrain").val("");
-
-            // testing validation
-           
-            if (moment(firstTrain).isValid()) {
-                alert("is valid");
-                console.log(firstTrain);
-                
-            } else {
-                alert("is not valid");
-                console.log(firstTrain);
-            }
-
         }
     } else {
         $("#warning").html("<span>Must fill out all forms</span>");
@@ -92,22 +80,22 @@ database.ref().on("child_added", function (snapshot) {
     console.log(sv.trainFrequency);
     // current time
     var currentTime = moment().format('HH:mm');
-    console.log(currentTime);
+    
     // First Time (pushed back 1 year to make sure it comes before current time)
     var firstTimeConverted = moment(sv.trainLeaving, "HH:mm").subtract(1, "years");
-    console.log(firstTimeConverted);
+   
     // Getting the difference between the times 
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-    console.log("DIFFERENCE IN TIME: " + diffTime);
+    
     // Getting the reminder
     var tRemainder = diffTime % sv.trainFrequency;
-    console.log(tRemainder);
+
     // Minutes Until Train
     var tMinutesTillTrain = sv.trainFrequency - tRemainder;
-    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+
 
 
     var tableRow = $("<tr>");
@@ -118,7 +106,7 @@ database.ref().on("child_added", function (snapshot) {
     var tableData3 = $("<td>");
     tableData3.text(sv.trainFrequency);
     var tableData4 = $("<td>");
-    tableData4.text(nextTrain.format("hh:mm"));
+    tableData4.text(nextTrain.format("hh:mm a"));
     var tableData5 = $("<td>");
     tableData5.text(tMinutesTillTrain);
 
