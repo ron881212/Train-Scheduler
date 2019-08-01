@@ -2,7 +2,7 @@
 
 A website to see in real time when your train is coming. 
 
-[homepage]()
+![homepage](demoPics/sitePic.png)
 
 ## Use
 
