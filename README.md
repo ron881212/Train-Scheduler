@@ -1,6 +1,6 @@
 # Train-Scheduler
 
-A website to see in real time when your train is coming. 
+## A website to see in real time when your train is coming. 
 
 ![homepage](demoPics/sitePic.png)
 
